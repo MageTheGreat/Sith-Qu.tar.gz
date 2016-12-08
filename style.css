@@ -1,0 +1,41 @@
+﻿body {
+	background: black;
+	color: white;
+}
+
+div.logoRezo {
+	display: flex;
+	text-align: center;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+img.logoRezo1 {
+	float: left;
+}
+
+img.logoRezo2 {
+	float: right;
+}
+
+span.intro {
+	font-size: 170%;
+	margin: auto;
+}
+
+span.listName {
+	color: gold;
+	font-weight: bold;
+	font-size: 140%;
+}
+
+div.logoListe {
+	display: block;
+	clear: both;
+	text-align: center;
+}
+
+img.logoListe {
+	
+}
