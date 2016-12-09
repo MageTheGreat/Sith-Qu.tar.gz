@@ -1,9 +1,11 @@
 ﻿body {
 	background: black;
 	color: white;
+	font-family: Verdana, sans-serif;
 }
 
-div.logoRezo {
+
+div.header {
 	display: flex;
 	text-align: center;
 	flex-direction: row;
@@ -20,7 +22,7 @@ img.logoRezo2 {
 }
 
 span.intro {
-	font-size: 170%;
+	font-size: 160%;
 	margin: auto;
 }
 
@@ -30,12 +32,36 @@ span.listName {
 	font-size: 140%;
 }
 
-div.logoListe {
-	display: block;
-	clear: both;
+
+p.sommaireP{
+	display: flex;
 	text-align: center;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 img.logoListe {
-	
+	float : middle;
+}
+
+
+div.speech {
+	display: block;
+	font-size: 100%;
+}
+
+
+div.jeux {
+	display: block;
+	font-size: 100%;
+}
+
+span.test {
+	color: blue;
+	font-weight: bold;
+}
+
+div.footer {
+	font-size: 90%;
 }
