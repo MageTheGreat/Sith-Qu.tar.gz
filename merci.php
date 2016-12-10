@@ -23,7 +23,7 @@
 	
 	<div>
 		<p>
-			Merci <span class="test"><?php echo $_POST['prenom'].' '.$_POST['nom'];?></span>, nous transmettrons votre chaleureux message au Président.
+			Merci <span class="nom"><?php echo $_POST['prenom'].' '.$_POST['nom'];?></span>, nous transmettrons votre chaleureux message au Président.
 			
 			<br/><br/>
 			
