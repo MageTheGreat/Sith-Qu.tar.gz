@@ -4,6 +4,10 @@
 	font-family: Verdana, sans-serif;
 }
 
+a{
+	color: white;
+}
+
 
 div.header {
 	display: flex;
@@ -12,6 +16,11 @@ div.header {
 	justify-content: space-between;
 	align-items: center;
 }
+
+div.footer {
+	font-size: 90%;
+}
+
 
 img.logoRezo1 {
 	float: left;
@@ -60,8 +69,4 @@ div.jeux {
 span.test {
 	color: blue;
 	font-weight: bold;
-}
-
-div.footer {
-	font-size: 90%;
 }

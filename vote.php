@@ -24,15 +24,8 @@
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 		$votes = 0;
-		$jour = 0;
-		$reponse = $bdd->query('SELECT MAX(jour) FROM jours');
-		while($donnees = $reponse->fetch())
-		{
-		   $jour = $donnees['MAX(jour)'];
-		}
-		$reponse->closeCursor();
-		$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voie=? AND jour=?');
-		$reponse->execute(array($_POST['voie'], $jour));
+		$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voie=? AND date=?');
+		$reponse->execute(array($_POST['voie'], date('y-m-d')));
 		while($donnees = $reponse->fetch())
 		{
 		   $votes = $votes + $donnees['nbVotes'];
@@ -41,13 +34,13 @@
 		
 		if($votes == 0)
 		{
-			$reponse = $bdd->prepare('INSERT INTO votes (nbVotes, voie, jour) VALUES (?, ?, ?)');
-			$reponse->execute(array(0, $_POST['voie'], $jour));
+			$reponse = $bdd->prepare('INSERT INTO votes (nbVotes, voie, date) VALUES (?, ?, ?)');
+			$reponse->execute(array(0, $_POST['voie'], date('y-m-d')));
 			$reponse->closeCursor();
 		}
 		$votes = $votes + 1;
-		$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voie=? AND jour=?');
-		$reponse->execute(array($votes, $_POST['voie'], $jour));
+		$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voie=? AND date=?');
+		$reponse->execute(array($votes, $_POST['voie'], date('y-m-d')));
 		$reponse->closeCursor();
 	?>
 

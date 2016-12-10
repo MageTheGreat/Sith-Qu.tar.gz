@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
 <head>
@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
 	<div class="header">
 		<img class="logoRezo1" src="img/Logo_Rezo_w.png" width=15%/>
 		<span class="intro">Bienvenue sur le Sith Web de la liste du Rézo 2016 <span class="listName">Qu.tar.gz</span> !</span>
@@ -23,28 +22,31 @@
 	
 	<div>
 		<p>
-			Merci <span class="test"><?php echo $_POST['prenom'].' '.$_POST['nom'];?></span>, nous transmettrons votre chaleureux message au Président.
-			
-			<br/><br/>
-			
-			Peut-être vous rendra-t-il la pareille un jour...
+			Tout d'abord, sachez que vous avez perdu au jeu.<br/><br/>
+			Maintenant que cela est établi, vous allez devoir choisir un des jeux ci-dessous :
 		</p>
 	</div>
+	
+	<form action="enigme.php" method="post">
+		<center><input  type="submit" value="Une énigme" /></center>
+	</form>
 
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$reponse = $bdd->prepare('INSERT INTO merci (nom, prenom, date) VALUES (?, ?, ?)');
-		$reponse->execute(array($_POST['nom'], $_POST['prenom'], date('y-m-d')));
-		$reponse->closeCursor();
-	?>
+	<form action="labyrinthe.php" method="post">
+		<center><input  type="submit" value="Un jeu : le labyrithe des Sith" /></center>
+	</form>
+	<form action="pong.php" method="post">
+		<center><input  type="submit" value="Un jeu : le Jedi-pong" /></center>
+	</form>
 	
 	<br/>
 	
 	<hr/>
 	
 	<div class="footer">
-		
+		Mentions légales
 	</div>
+	
+	<br/>
 	
 </body>
 </html>

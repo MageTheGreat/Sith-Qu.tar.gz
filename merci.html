@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
 <head>
@@ -21,16 +21,26 @@
 	
 	<br/><br/>
 	
-	<div class="textMot">
-		Président, Président, Président !!!
-	</div>
-	
 	<div>
 		<p>
-			Vous pouvez remerci le Président en cliquant sur <a href="merci.html">ce lien</a>.
+			Vous souhaitez dire merci au Président.
 		</p>
 	</div>
-	
+
+	<div class="form">
+		<form action="merci.php" method="post">
+			<p>
+				Veuillez entrer vos prénoms et noms :
+				<input type="text" name="prenom" />
+				<input type="text" name="nom" />
+
+				<br/><br/>				
+				
+				<center><input type="submit" value="Remercier le Président !" /></center>
+			</p>
+		</form>
+	</div>
+
 	<br/>
 	
 	<hr/>
