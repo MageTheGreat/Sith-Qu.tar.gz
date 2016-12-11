@@ -2,10 +2,13 @@
 	background: black;
 	color: white;
 	font-family: Verdana, sans-serif;
+	/*color: lime;
+	font-family: Courier, monospace;*/
 }
 
 a{
 	color: white;
+	/*color: lime;*/
 }
 
 
@@ -71,7 +74,7 @@ span.nom {
 	font-weight: bold;
 }
 
-span.voie {
+span.vote {
 	color: red;
 	font-weight: bold;
 }

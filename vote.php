@@ -19,61 +19,36 @@
 		<img class="logoRezo2" src="img/Logo_Rezo_w.png" width=15%/>
 	</div>
 	
-	<br/>
+	<br/><br/>
 	
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$votes = 0;
-		$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voie=? AND date=?');
-		$reponse->execute(array($_POST['voie'], date('y-m-d')));
+		$reponse = $bdd->prepare('SELECT voteName, voteLink FROM jours WHERE date=?');
+		$reponse->execute(array(date('y-m-d')));
+		$voteInfos = array('voteName' => '', 'voteLink' => '');
 		while($donnees = $reponse->fetch())
 		{
-		   $votes = $votes + $donnees['nbVotes'];
+			$voteInfos['voteName'] = $donnees['voteName'];
+			$voteInfos['voteLink'] = $donnees['voteLink'];
 		}
-		$reponse->closeCursor();
-		
-		if($votes == 0)
-		{
-			$reponse = $bdd->prepare('INSERT INTO votes (nbVotes, voie, date) VALUES (?, ?, ?)');
-			$reponse->execute(array(0, $_POST['voie'], date('y-m-d')));
-			$reponse->closeCursor();
-		}
-		$votes = $votes + 1;
-		$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voie=? AND date=?');
-		$reponse->execute(array($votes, $_POST['voie'], date('y-m-d')));
 		$reponse->closeCursor();
 	?>
 	
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$voies = array('PAG1', 'PAG2', 'PAG3', 'DAG1', 'DAG2', 'DAG3');
-		$votes = array('PAG1' => 0, 'PAG2' => 0, 'PAG3' => 0, 'DAG1' => 0, 'DAG2' => 0, 'DAG3' => 0);
-		foreach($voies as $voie)
-		{
-			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voie=? AND date=?');
-			$reponse->execute(array($voie, date('y-m-d')));
-			while($donnees = $reponse->fetch())
-			{
-			   $votes[$voie] = $votes[$voie] + $donnees['nbVotes'];
-			}
-			$reponse->closeCursor();
-		}
-	?>
-
-	<div class="stats">
-		<p>
-			Merci d'avoir voté ! Voici les statistiques en cours :
-			<ul>
-				<?php
-					foreach($votes as $voie => $vote)
-					{ ?>
-						<li><span class="voie"><?php echo $voie; ?></span> : <?php echo $vote; ?> votes.</li>
-					<?php }
-				?>
-			</ul>
-		</p>
+	<div class="textVote">
+		C'est sur cette page qu'une bataille acharnée va se jouer pour savoir quelles voies, séries, groupes de TD, rez ou encore aile ou étage va se trouver sans Internet pour une durée indéterminée !<br/>
+		Vous votez aujourd'hui pour une <span class="vote"><?php echo $voteInfos['voteName']; ?></span>.
 	</div>
-
+	
+	<div class="form">
+		<form action="voter.php" method="post">
+			<p>
+				<input type="hidden" name="link" value=<?php echo $voteInfos['voteLink']; ?> />
+				
+				<center><input type="submit" value="Voter !" /></center>
+			</p>
+		</form>
+	</div>
+	
 	<br/>
 	
 	<hr/>
