@@ -69,6 +69,12 @@ div.jeux {
 	font-size: 100%;
 }
 
+div.sketch-holder {
+	width:100%;
+	padding-left: auto;
+	padding-right: auto;
+}
+
 span.nom {
 	color: blue;
 	font-weight: bold;
