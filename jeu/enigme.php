@@ -6,16 +6,16 @@
 	<meta http-equiv="Content-Language" content="fr" />
 	<meta name="Supélec Rézo" content="Sith Web de la liste Supélec Rézo 2016" />
 	
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="..\style.css">
 	
 	<title>Sith Web Qu.tar.gz</title>
 </head>
 
 <body>
 	<div class="header">
-		<img class="logoRezo1" src="img/Logo_Rezo_w.png" width=15%/>
+		<img class="logoRezo1" src="..\img/Logo_Rezo_w.png" width=15%/>
 		<span class="intro">Bienvenue sur le Sith Web de la liste du Rézo 2016 <span class="listName">Qu.tar.gz</span> !</span>
-		<img class="logoRezo2" src="img/Logo_Rezo_w.png" width=15%/>
+		<img class="logoRezo2" src="..\img/Logo_Rezo_w.png" width=15%/>
 	</div>
 	
 	<br/><br/>
