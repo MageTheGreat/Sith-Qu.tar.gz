@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
 	<div class="header">
 		<img class="logoRezo1" src="img/Logo_Rezo_w.png" width=15%/>
 		<div class="intro">
@@ -27,7 +26,7 @@
 					<br/><br/>
 					<i>Pseudo :</i> <input type="text" name="user" placeholder="Entrez votre pseudo" />
 					<br/>
-					<i>Mot de passe :</i> <input type="password" name="pass" placeholder="Entrez votre mot de passe" />
+					<i>Mot de passe :</i> <input type="text" name="pass" placeholder="Entrez votre mot de passe" />
 
 					<br/><br/>
 					
@@ -41,39 +40,45 @@
 	
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$reponse = $bdd->prepare('SELECT voteName, voteLink FROM jours WHERE date=?');
-		$reponse->execute(array(date('y-m-d')));
-		$voteInfos = array('voteName' => '', 'voteLink' => '');
+		$ok = false;
+		$reponse = $bdd->prepare('SELECT pass FROM ids WHERE user=?');
+		$reponse->execute(array($_POST['user']));
 		while($donnees = $reponse->fetch())
 		{
-			$voteInfos['voteName'] = $donnees['voteName'];
-			$voteInfos['voteLink'] = $donnees['voteLink'];
+			if(strcmp(strtolower(md5($_POST['pass'])), strtolower($donnees['pass'])) == 0)
+			{
+				$ok = true;
+			}
 		}
 		$reponse->closeCursor();
-	?>
-	
-	<div class="textVote">
-		C'est sur cette page qu'une bataille acharnée va se jouer pour savoir quelles voies, séries, groupes de TD, rez ou encore aile ou étage va se trouver sans Internet pour une durée indéterminée !<br/>
-		Vous votez aujourd'hui pour une <span class="vote"><?php echo $voteInfos['voteName']; ?></span>.
-	</div>
-	
-	<div class="form">
-		<form action="voter.php" method="post">
+		
+		if($ok == true)
+		{ ?>
 			<p>
-				<input type="hidden" name="link" value=<?php echo $voteInfos['voteLink']; ?> />
-				
-				<center><input type="submit" value="Voter !" /></center>
+				Vous êtes connecté !
+				<br/>
+				Bienvenu <span class="nom"><?php echo $_POST['user']; ?></span> !
+				<br/><br/>
 			</p>
-		</form>
-	</div>
-	
-	<br/>
+		<?php }
+		else
+		{ ?>
+			<p>
+				La connexion a échoué.
+				<br/>
+				Veuillez vérifier vos pseudos et mots de passe.
+				<br/><br/>
+			</p>
+		<?php }
+	?>
 	
 	<hr/>
 	
 	<div class="footer">
-		
+		Mentions légales
 	</div>
+	
+	<br/>
 	
 </body>
 </html>

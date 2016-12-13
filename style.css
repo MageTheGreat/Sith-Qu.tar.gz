@@ -20,23 +20,37 @@ div.header {
 	align-items: center;
 }
 
-div.footer {
-	font-size: 90%;
-}
-
-
 img.logoRezo1 {
-	float: left;
+	border-bottom: solid;
+	border-right: solid;
+	padding-top: 10pt;
+	padding-right: 10pt;
+	padding-bottom: 15pt;
 }
 
 img.logoRezo2 {
 	float: right;
 }
 
-span.intro {
+div.intro {
 	font-size: 160%;
 	margin: auto;
+	border-top: solid;
+	border-bottom: solid;
 }
+
+div.connect {
+	border-bottom: solid;
+	border-left: solid;
+	padding-left: 10pt;
+	text-align: left;
+}
+
+span.connectText {
+	font-weight: bold;
+	font-size: 120%;
+}
+
 
 span.listName {
 	color: gold;
