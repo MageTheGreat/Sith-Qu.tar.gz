@@ -15,23 +15,16 @@
 
 	<?php include("structure/header.php"); ?>
 	
+	<div class="textMot">
+		Président, Président, Président !!!
+	</div>
+	
 	<div>
 		<p>
-			Merci <span class="nom"><?php echo $_POST['prenom'].' '.$_POST['nom'];?></span>, nous transmettrons votre chaleureux message au Président.
-			
-			<br/><br/>
-			
-			Peut-être vous rendra-t-il la pareille un jour...
+			Vous pouvez remerci le Président en cliquant sur <a href="merciAccueil.php">ce lien</a>.
 		</p>
 	</div>
 
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$reponse = $bdd->prepare('INSERT INTO merci (nom, prenom, date) VALUES (?, ?, ?)');
-		$reponse->execute(array($_POST['nom'], $_POST['prenom'], date('y-m-d')));
-		$reponse->closeCursor();
-	?>
-	
 	<?php include("structure/footer.php"); ?>
 	
 </body>

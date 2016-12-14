@@ -14,18 +14,31 @@
 <body>
 
 	<?php include("structure/header.php"); ?>
-
+	
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 		$reponse = $bdd->prepare('SELECT jeuName FROM jours WHERE date=?');
 		$reponse->execute(array(date('y-m-d')));
+		$jeuInfos = array('jeuName' => '');
 		while($donnees = $reponse->fetch())
 		{
-			$jeu = $donnees['jeuName'];
+			$jeuInfos['jeuName'] = $donnees['jeuName'];
 		}
 		$reponse->closeCursor();
-		include("jeu/".$jeu.".php");
 	?>
+	
+	<div>
+		<p>
+			Tout d'abord, sachez que vous avez perdu au jeu.<br/><br/>
+			Vous jouez aujourd'hui au <?php echo $jeuInfos['jeuName']; ?>.
+		</p>
+	</div>
+	
+	<form action="jeu.php" method="post">
+		<input type="hidden" name="jeu" value=<?php echo $jeuInfos['jeuName']; ?> />
+	
+		<center><input  type="submit" value="Je veux jouer !" /></center>
+	</form>
 	
 	<?php include("structure/footer.php"); ?>
 	

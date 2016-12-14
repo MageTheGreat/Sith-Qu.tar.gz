@@ -12,31 +12,8 @@
 </head>
 
 <body>
-	<div class="header">
-		<img class="logoRezo1" src="img/Logo_Rezo_w.png" width=15%/>
-		<div class="intro">
-			<p>
-				Voici le Sith Web de la liste du Rézo 2016 <span class="listName">Qu.tar.gz</span> !
-			</p>
-		</div>
-		<div class="connect">
-			<p>
-				<form action="login.php" method="post">
-					<span class="connectText">Connexion :</span>
-					<br/><br/>
-					<i>Pseudo :</i> <input type="text" name="user" placeholder="Entrez votre pseudo" />
-					<br/>
-					<i>Mot de passe :</i> <input type="password" name="pass" placeholder="Entrez votre mot de passe" />
 
-					<br/><br/>
-					
-					<center><input type="submit" value="Connexion" /></center>
-				</form>
-			</p>
-		</div>
-	</div>
-	
-	<br/><br/>
+	<?php include("structure/header.php"); ?>
 	
 	<div>
 		<p class="sommaireP">
@@ -53,7 +30,7 @@
 	
 	<div class="speech">
 		<p>
-			Retrouvez également le <a href="mot.html">mot de notre président</a>.
+			Retrouvez également le <a href="mot.php">mot de notre président</a>.
 		</p>
 	</div>
 	
@@ -65,19 +42,11 @@
 			<br/>
 			Pour voter, cliquez sur <a href="vote.php">ce lien</a>.
 			<br/>
-			Pour jouer, cliquez sur <a href="jeu.php">ce lien</a>.
+			Pour jouer, cliquez sur <a href="jeuAccueil.php">ce lien</a>.
 		<p>
 	</div>
-	
-	<br/>
-	
-	<hr/>
-	
-	<div class="footer">
-		Mentions légales
-	</div>
-	
-	<br/>
+
+	<?php include("structure/footer.php"); ?>
 	
 </body>
 </html>
