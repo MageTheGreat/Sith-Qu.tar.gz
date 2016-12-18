@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
@@ -17,6 +18,11 @@
 	<br/><br/>
 	
 	<?php
+		if(!isset($_POST['user']))
+		{
+			header("Location: index.php");
+		}
+		
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 		$ok = false;
 		$reponse = $bdd->prepare('SELECT pass FROM ids WHERE user=?');
@@ -30,15 +36,19 @@
 		}
 		$reponse->closeCursor();
 		
-		if($ok == true)
-		{ ?>
-			<p>
-				Vous êtes connecté !
-				<br/>
-				Bienvenu <span class="nom"><?php echo $_POST['user']; ?></span> !
-				<br/><br/>
-			</p>
-		<?php }
+		if($ok)
+		{
+			$_SESSION['user'] = $_POST['user'];
+			
+			if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != "login.php")
+			{
+				header("Location: ".$_SERVER['HTTP_REFERER']);
+			}
+			else
+			{
+				header("Location: index.php");
+			}
+		}
 		else
 		{ ?>
 			<p>
@@ -46,6 +56,7 @@
 				<br/>
 				Veuillez vérifier vos pseudos et mots de passe.
 				<br/><br/>
+				Retour à <a href="connect.php">la page de connexion</a>.
 			</p>
 		<?php }
 	?>

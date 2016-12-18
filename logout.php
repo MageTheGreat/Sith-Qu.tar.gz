@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
@@ -13,25 +14,20 @@
 
 <body>
 	<?php include("inc/header.php"); ?>
-
+	
 	<br/><br/>
-
-	<div class="connect2">
-			<p>
-				<form action="login.php" method="post">
-					<span class="connectText">Connexion :</span>
-					<br/><br/>
-					<i>Pseudo :</i> <input type="text" name="user" placeholder="Entrez votre pseudo" />
-					<br/>
-					<i>Mot de passe :</i> <input type="password" name="pass" placeholder="Entrez votre mot de passe" />
-
-					<br/><br/>
-
-					<center><input type="submit" value="Connexion" /></center>
-				</form>
-			</p>
-		</div>
+	
+	<?php
+		if(isset($_SESSION['user']))
+		{
+			unset($_SESSION['user']);
+		}
 		
+		session_destroy();
+		
+		header("Location: index.php");
+	?>
+	
 	<hr/>
 	
 	<div class="footer">

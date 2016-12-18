@@ -46,6 +46,11 @@ div.connect {
 	text-align: left;
 }
 
+div.connect2 {
+	padding-left: 10pt;
+	text-align: left;
+}
+
 span.connectText {
 	font-weight: bold;
 	font-size: 120%;
