@@ -13,13 +13,13 @@
 
 <body>
 	<?php include("inc/header.php"); ?>
-	
+
 	<br/><br/>
-	
-	<?php header("Location: jeu/".$_POST['link']); ?>
-	
-	<br/>
-	
+
+	<?php
+		
+	?>
+		
 	<hr/>
 	
 	<div class="footer">

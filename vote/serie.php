@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
 <head>
@@ -12,86 +12,25 @@
 </head>
 
 <body>
-
-	<div class="header">
-		<img class="logoRezo1" src="../img/Logo_Rezo_w.png" width=15%/>
-		<div class="intro">
+	<?php include("../inc/header.php"); ?>
+	
+	<br/><br/>
+	
+	<div class="form">
+		<form action="res_serie.php" method="post">
 			<p>
-				Voici le Sith Web de la liste du Rézo 2016 <span class="listName">Qu.tar.gz</span> !
+				Veuillez indiquer la voie à laquelle couper Internet :
+				<select name="serie">
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+				
+				<center><input type="submit" value="Voter !" /></center>
 			</p>
-		</div>
-		<div class="connect">
-			<p>
-				<form action="login.php" method="post">
-					<span class="connectText">Connexion :</span>
-					<br/><br/>
-					<i>Pseudo :</i> <input type="text" name="user" placeholder="Entrez votre pseudo" />
-					<br/>
-					<i>Mot de passe :</i> <input type="password" name="pass" placeholder="Entrez votre mot de passe" />
-
-					<br/><br/>
-					
-					<center><input type="submit" value="Connexion" /></center>
-				</form>
-			</p>
-		</div>
+		</form>
 	</div>
 	
-	<br/>
-	
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$votes = 0;
-		$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'serie\' AND voteName=? AND date=?');
-		$reponse->execute(array($_POST['serie'], date('y-m-d')));
-		while($donnees = $reponse->fetch())
-		{
-		   $votes = $votes + $donnees['nbVotes'];
-		}
-		$reponse->closeCursor();
-		
-		if($votes == 0)
-		{
-			$reponse = $bdd->prepare('INSERT INTO votes (voteType, voteName, nbVotes, date) VALUES (\'serie\', ?, ?, ?)');
-			$reponse->execute(array($_POST['serie'], 0, date('y-m-d')));
-			$reponse->closeCursor();
-		}
-		$votes = $votes + 1;
-		$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voteType=\'serie\' AND voteName=? AND date=?');
-		$reponse->execute(array($votes, $_POST['serie'], date('y-m-d')));
-		$reponse->closeCursor();
-	?>
-	
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$series = array('A', 'B', 'C');
-		$votes = array('A' => 0, 'B' => 0, 'C' => 0);
-		foreach($series as $serie)
-		{
-			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'serie\' AND voteName=? AND date=?');
-			$reponse->execute(array($serie, date('y-m-d')));
-			while($donnees = $reponse->fetch())
-			{
-			   $votes[$serie] = $votes[$serie] + $donnees['nbVotes'];
-			}
-			$reponse->closeCursor();
-		}
-	?>
-
-	<div class="stats">
-		<p>
-			Merci d'avoir voté ! Voici les statistiques en cours :
-			<ul>
-				<?php
-					foreach($votes as $serie => $vote)
-					{ ?>
-						<li><span class="vote"><?php echo $serie; ?></span> : <?php echo $vote; ?> votes.</li>
-					<?php }
-				?>
-			</ul>
-		</p>
-	</div>
-
 	<br/>
 	
 	<hr/>

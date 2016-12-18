@@ -18,27 +18,18 @@
 	
 	<div>
 		<p>
-			Merci <span class="nom"><?php echo $_POST['prenom'].' '.$_POST['nom'];?></span>, nous transmettrons votre chaleureux message au Président.
-			
-			<br/><br/>
-			
-			Peut-être vous rendra-t-il la pareille un jour...
+			Etes-vous sûr de vouloir remercier le Président ?
 		</p>
 	</div>
 
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$reponse = $bdd->prepare('INSERT INTO merci (nom, prenom, date) VALUES (?, ?, ?)');
-		$reponse->execute(array($_POST['nom'], $_POST['prenom'], date('y-m-d')));
-		$reponse->closeCursor();
-	?>
-	
-	<br/>
-	
-	<p>
-		Retour à la <a href="index.php">page d'accueil</a>.
-	</p>
-	
+	<div class="form">
+		<form action="merci.php" method="post">
+			<p>
+				<center><input type="submit" value="Je suis sûr !" /></center>
+			</p>
+		</form>
+	</div>
+
 	<br/>
 	
 	<hr/>
