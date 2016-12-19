@@ -14,7 +14,7 @@
 
 <body>
 	<?php include("../inc/header.php"); ?>
-	<?php include("inc/participation.php"); ?>
+	<?php include("../inc/participation.php"); ?>
 	
 	<br/><br/>
 	

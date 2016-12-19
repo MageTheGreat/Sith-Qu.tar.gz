@@ -29,7 +29,7 @@
 		}
 		$reponse->closeCursor();
 		
-		if(jeuLink == "")
+		if($jeuLink == "")
 		{
 			header("Location: index.php");
 		}
@@ -43,6 +43,7 @@
 		else
 		{ ?>
 			Vous avez déjà joué !
+			<br/>
 		<?php }
 	?>
 	

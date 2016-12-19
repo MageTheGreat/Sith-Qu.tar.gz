@@ -16,7 +16,7 @@ function participe($activite)
 
 	$ret = false;
 	$reponse = $bdd->prepare('SELECT * FROM participations WHERE nom=? AND prenom=? AND activite=? AND date=?');
-	$reponse->execute(array($infos['nom'], $infos['prenom'], "vote", date('y-m-d')));
+	$reponse->execute(array($infos['nom'], $infos['prenom'], $activite, date('y-m-d')));
 	while($donnees = $reponse->fetch())
 	{		
 		if($donnees['nom'] != "")
@@ -43,7 +43,7 @@ function addParticipation($activite)
 	$reponse->closeCursor();
 	
 	$reponse = $bdd->prepare('INSERT INTO participations (nom, prenom, activite, date) VALUES (?, ?, ?, ?)');
-	$reponse->execute(array($infos['nom'], $infos['prenom'], "vote", date('y-m-d')));
+	$reponse->execute(array($infos['nom'], $infos['prenom'], $activite, date('y-m-d')));
 	$reponse->closeCursor();
 }
 ?>
