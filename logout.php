@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+	if(session_status() != PHP_SESSION_ACTIVE)
+	{
+		session_start();
+	}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
@@ -21,6 +26,11 @@
 		if(isset($_SESSION['user']))
 		{
 			unset($_SESSION['user']);
+		}
+		
+		if(isset($_SESSION['connected']))
+		{
+			unset($_SESSION['connected']);
 		}
 		
 		session_destroy();

@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+	if(session_status() != PHP_SESSION_ACTIVE)
+	{
+		session_start();
+	}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
@@ -39,6 +44,7 @@
 		if($ok)
 		{
 			$_SESSION['user'] = $_POST['user'];
+			$_SESSION['connected'] = true;
 			
 			if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != "login.php")
 			{

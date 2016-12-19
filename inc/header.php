@@ -3,6 +3,11 @@
 	{
 		session_start();
 	}
+	if(!isset($_SESSION['connected']))
+	{
+		session_destroy();
+		header("Location: index.php");
+	}
 ?>
 
 <header>
@@ -44,7 +49,15 @@
 					<p>
 						Vous êtes connecté en tant que <span class="nom"><?php echo($_SESSION['user']); ?></span>.
 						<br/><br/>
-						<a href="logout.php">Se déconnecter</a>
+						<?php
+						if(file_exists("logout.php"))
+						{ ?>
+							<a href="logout.php">Se déconnecter</a>
+						<?php }
+						else
+						{ ?>
+							<a href="../logout.php">Se déconnecter</a>
+						<?php } ?>
 					</p>
 				</div>
 			<?php } ?>
