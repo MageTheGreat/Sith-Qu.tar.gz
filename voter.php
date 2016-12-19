@@ -14,10 +14,40 @@
 
 <body>
 	<?php include("inc/header.php"); ?>
+	<?php include("inc/participation.php"); ?>
 	
 	<br/><br/>
 	
-	<?php header("Location: vote/".$_POST['link']); ?>
+	<?php
+		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+		$reponse = $bdd->prepare('SELECT voteLink FROM jours WHERE date=?');
+		$reponse->execute(array(date('y-m-d')));
+		$voteLink = "";
+		while($donnees = $reponse->fetch())
+		{
+			$voteLink = $donnees['voteLink'];
+		}
+		$reponse->closeCursor();
+		
+		if($voteLink == "")
+		{
+			header("Location: index.php");
+		}
+	?>
+	
+	<?php
+		if(!participe("vote"))
+		{
+			header("Location: vote/".$voteLink);
+		}
+		else
+		{ ?>
+			Vous avez déjà voté !
+			<br/><br/>
+			Accéder aux <a href=<?php echo "vote/res_".$voteLink; ?>>résultats</a>.
+			<br/>
+		<?php }
+	?>
 	
 	<br/>
 	

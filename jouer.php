@@ -14,10 +14,37 @@
 
 <body>
 	<?php include("inc/header.php"); ?>
+	<?php include("inc/participation.php"); ?>
 	
 	<br/><br/>
 	
-	<?php header("Location: jeu/".$_POST['link']); ?>
+	<?php
+		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+		$reponse = $bdd->prepare('SELECT jeuLink FROM jours WHERE date=?');
+		$reponse->execute(array(date('y-m-d')));
+		$jeuLink = "";
+		while($donnees = $reponse->fetch())
+		{
+			$jeuLink = $donnees['jeuLink'];
+		}
+		$reponse->closeCursor();
+		
+		if(jeuLink == "")
+		{
+			header("Location: index.php");
+		}
+	?>
+	
+	<?php
+		if(!participe("jeu"))
+		{
+			header("Location: jeu/".$jeuLink);
+		}
+		else
+		{ ?>
+			Vous avez déjà joué !
+		<?php }
+	?>
 	
 	<br/>
 	

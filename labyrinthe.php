@@ -29,7 +29,7 @@
 	<br/>
 	
 	<p>
-		Retour à la <a href="index.html">page d'accueil</a>.
+		Retour à la <a href="index.php">page d'accueil</a>.
 	</p>
 	
 	<br/>

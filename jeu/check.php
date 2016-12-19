@@ -14,6 +14,7 @@
 
 <body>
 	<?php include("../inc/header.php"); ?>
+	
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 		$reponse = $bdd->prepare('SELECT nom, prenom FROM ids WHERE user=?');
@@ -44,7 +45,7 @@
 			if($_POST['reponse'] == $answer)
 			{
 				echo "Vous avez répondu correctement à l'énigme.";
-				$reponse = $bdd->prepare('INSERT INTO request (nom, prenom, date) VALUES (?, ?, ?)');
+				$reponse = $bdd->prepare('INSERT INTO sauves (nom, prenom, date) VALUES (?, ?, ?)');
 				$reponse->execute(array($infos['nom'], $infos['prenom'], date('y-m-d')));
 				$reponse->closeCursor();
 			}

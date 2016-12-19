@@ -14,10 +14,13 @@
 
 <body>
 	<?php include("../inc/header.php"); ?>
+	<?php include("inc/participation.php"); ?>
 	
 	<br/><br/>
 	
 	<?php
+		addParticipation("jeu");
+	
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 		$max = 0;
 		$reponse = $bdd->query('SELECT MAX(id) FROM enigmes');

@@ -14,30 +14,36 @@
 
 <body>
 	<?php include("../inc/header.php"); ?>
+	<?php include("../inc/participation.php"); ?>
 	
 	<br/><br/>
-	
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$votes = 0;
-		$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'serie\' AND voteName=? AND date=?');
-		$reponse->execute(array($_POST['serie'], date('y-m-d')));
-		while($donnees = $reponse->fetch())
-		{
-		   $votes = $votes + $donnees['nbVotes'];
-		}
-		$reponse->closeCursor();
 		
-		if($votes == 0)
+	<?php
+		if(!participe("vote"))
 		{
-			$reponse = $bdd->prepare('INSERT INTO votes (voteType, voteName, nbVotes, date) VALUES (\'serie\', ?, ?, ?)');
-			$reponse->execute(array($_POST['serie'], 0, date('y-m-d')));
+			addParticipation("vote");
+			
+			$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+			$votes = 0;
+			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'serie\' AND voteName=? AND date=?');
+			$reponse->execute(array($_POST['serie'], date('y-m-d')));
+			while($donnees = $reponse->fetch())
+			{
+			   $votes = $votes + $donnees['nbVotes'];
+			}
+			$reponse->closeCursor();
+			
+			if($votes == 0)
+			{
+				$reponse = $bdd->prepare('INSERT INTO votes (voteType, voteName, nbVotes, date) VALUES (\'serie\', ?, ?, ?)');
+				$reponse->execute(array($_POST['serie'], 0, date('y-m-d')));
+				$reponse->closeCursor();
+			}
+			$votes = $votes + 1;
+			$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voteType=\'serie\' AND voteName=? AND date=?');
+			$reponse->execute(array($votes, $_POST['serie'], date('y-m-d')));
 			$reponse->closeCursor();
 		}
-		$votes = $votes + 1;
-		$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voteType=\'serie\' AND voteName=? AND date=?');
-		$reponse->execute(array($votes, $_POST['serie'], date('y-m-d')));
-		$reponse->closeCursor();
 	?>
 	
 	<?php
