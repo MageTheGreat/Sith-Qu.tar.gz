@@ -14,6 +14,18 @@
 
 <body>
 	<?php include("../inc/header.php"); ?>
+	<?php
+		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+		$reponse = $bdd->prepare('SELECT nom, prenom FROM ids WHERE user=?');
+		$reponse->execute(array($_SESSION['user']));
+		$infos = array('prenom' => '', 'nom' => '');
+		while($donnees = $reponse->fetch())
+		{
+			$infos['prenom'] = $donnees['prenom'];
+			$infos['nom'] = $donnees['nom'];
+		}
+		$reponse->closeCursor();
+	?>
 	
 	<br/><br/>
 	
@@ -33,7 +45,7 @@
 			{
 				echo "Vous avez répondu correctement à l'énigme.";
 				$reponse = $bdd->prepare('INSERT INTO request (nom, prenom, date) VALUES (?, ?, ?)');
-				$reponse->execute(array($_POST['nom'], $_POST['prenom'], date('y-m-d')));
+				$reponse->execute(array($infos['nom'], $infos['prenom'], date('y-m-d')));
 				$reponse->closeCursor();
 			}
 			else

@@ -49,12 +49,6 @@
 				<input type="text" name="reponse" />
 				
 				<br/><br/>
-				
-				Veuillez entrer vos prénoms et noms :
-				<input type="text" name="prenom" />
-				<input type="text" name="nom" />
-				
-				<br/><br/>				
 					
 				<center><input type="submit" value="Valider" /></center>
 			</p>

@@ -28,10 +28,6 @@ img.logoRezo1 {
 	padding-bottom: 15pt;
 }
 
-img.logoRezo2 {
-	float: right;
-}
-
 div.intro {
 	font-size: 160%;
 	margin: auto;
@@ -42,6 +38,7 @@ div.intro {
 div.connect {
 	border-bottom: solid;
 	border-left: solid;
+	padding-top: 10pt;
 	padding-left: 10pt;
 	text-align: left;
 }
