@@ -30,8 +30,8 @@
 			
 			$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 			$votes = 0;
-			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'serie\' AND voteName=? AND date=?');
-			$reponse->execute(array($_POST['serie'], date('y-m-d')));
+			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'aile\' AND voteName=? AND date=?');
+			$reponse->execute(array($_POST['aile'], date('y-m-d')));
 			while($donnees = $reponse->fetch())
 			{
 			   $votes = $votes + $donnees['nbVotes'];
@@ -40,13 +40,13 @@
 			
 			if($votes == 0)
 			{
-				$reponse = $bdd->prepare('INSERT INTO votes (voteType, voteName, nbVotes, date) VALUES (\'serie\', ?, ?, ?)');
-				$reponse->execute(array($_POST['serie'], 0, date('y-m-d')));
+				$reponse = $bdd->prepare('INSERT INTO votes (voteType, voteName, nbVotes, date) VALUES (\'aile\', ?, ?, ?)');
+				$reponse->execute(array($_POST['aile'], 0, date('y-m-d')));
 				$reponse->closeCursor();
 			}
 			$votes = $votes + 1;
-			$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voteType=\'serie\' AND voteName=? AND date=?');
-			$reponse->execute(array($votes, $_POST['serie'], date('y-m-d')));
+			$reponse = $bdd->prepare('UPDATE votes SET nbVotes=? WHERE voteType=\'aile\' AND voteName=? AND date=?');
+			$reponse->execute(array($votes, $_POST['aile'], date('y-m-d')));
 			$reponse->closeCursor();
 		}
 	?>
@@ -54,15 +54,15 @@
 <?php // ON RECUPERE LES VOTES EN VUE DE LES AFFICHER ?>
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$series = array('A', 'B', 'C');
-		$votes = array('A' => 0, 'B' => 0, 'C' => 0);
-		foreach($series as $serie)
+		$ailes = array('1.A', '1.B', '1.C', '1.D', '2.A', '2.B', '2.C', '2.D');
+		$votes = array('1.A' => 0, '1.B' => 0, '1.C' => 0, '1.D' => 0, '2.A' => 0, '2.B' => 0, '2.C' => 0, '2.D' => 0);
+		foreach($ailes as $aile)
 		{
-			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'serie\' AND voteName=? AND date=?');
-			$reponse->execute(array($serie, date('y-m-d')));
+			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'aile\' AND voteName=? AND date=?');
+			$reponse->execute(array($aile, date('y-m-d')));
 			while($donnees = $reponse->fetch())
 			{
-			   $votes[$serie] = $votes[$serie] + $donnees['nbVotes'];
+			   $votes[$aile] = $votes[$aile] + $donnees['nbVotes'];
 			}
 			$reponse->closeCursor();
 		}
@@ -74,9 +74,9 @@
 			Merci d'avoir voté ! Voici les statistiques en cours :
 			<ul>
 				<?php
-					foreach($votes as $serie => $vote)
+					foreach($votes as $aile => $vote)
 					{ ?>
-						<li><span class="vote"><?php echo $serie; ?></span> : <?php echo $vote; ?> votes.</li>
+						<li><span class="vote"><?php echo $aile; ?></span> : <?php echo $vote; ?> votes.</li>
 					<?php }
 				?>
 			</ul>

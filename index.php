@@ -1,3 +1,5 @@
+<?php // SI LA SESSION N'EST PAS ACTIVE, ON LA DEMARRE ?>
+<?php // SI L'UTILISATEUR NE S'EST PAS ENCORE CONNECTE, ON LE SIGNALE AUX AUTRES PAGES ?>
 <?php
 	if(session_status() != PHP_SESSION_ACTIVE)
 	{
@@ -10,6 +12,7 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<?php // DEFINITION DES META-DONNEES, FEUILLE DE STYLE, ET ICONE ?>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,15 +25,17 @@
 </head>
 
 <body>
+<?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
 	<?php include("inc/header.php"); ?>
 	
 	<br/><br/>
 	
+<?php // SOMMAIRE : LOGO, VIDEO, CHOREE ?>
 	<div>
 		<p class="sommaireP">
 			Cette année, les listeux du Rézo vous ont préparé des divertissements on ne peut plus qualis ! Au programme, vous trouverez :
 			<ul>
-				<li>Un magnifique logo, le <span class="listName">Queutar.gz</span> : <br/><img class="logoListe" src="img/Logo_Liste.jpg" width=20%/></li>
+				<li>Un magnifique logo, le <span class="listName">Queutar.gz</span> : <br/><img class="logoListe" src="img/Logo_Liste_alpha.png" width=30%/></li>
 				<li>Un teaser vidéo digne des plus grands réalisateurs de science-fiction, le <i>(Nom quali a venir)</i> : <br/><i>(A venir)</i></li>
 				<li>Une chorégraphie spécialement créée par des artistes de renom, la <span class="listName">Corée du Nord</span> : <br/><i>(A venir)</i></li>
 			</ul>
@@ -38,10 +43,11 @@
 	</div>
 	
 	<br/><br/>
-	
+
+<?php // LIENS VERS LES DIFFERENTES FONCTIONNALITES DU SITH : MOT DU PRESIDENT, VOTES, JEUX ?>
 	<div class="speech">
 		<p>
-			Retrouvez également le <a href="mot.php">mot de notre président</a>.
+			Retrouvez également le <a href="mot.php">mot de notre Président</a>.
 		</p>
 	</div>
 	
@@ -57,15 +63,8 @@
 		<p>
 	</div>
 	
-	<br/>
-	
-	<hr/>
-	
-	<div class="footer">
-		Mentions légales
-	</div>
-	
-	<br/>
+<?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>
+	<?php include("inc/footer.php"); ?>
 	
 </body>
 </html>

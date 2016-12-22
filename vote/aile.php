@@ -20,18 +20,20 @@
 	
 	<br/><br/>
 	
-<?php // FORMULAIRE DE CHOIX DE LA VOIE ?>
+<?php // FORMULAIRE DE CHOIX DE L'AILE ?>
 	<div class="form">
-		<form action="res_voie.php" method="post">
+		<form action="res_aile.php" method="post">
 			<p>
-				Veuillez indiquer la voie à laquelle couper Internet :
-				<select name="voie">
-					<option value="PAG1">PAG1</option>
-					<option value="PAG2">PAG2</option>
-					<option value="PAG3">PAG3</option>
-					<option value="DAG1">DAG1</option>
-					<option value="DAG2">DAG2</option>
-					<option value="DAG3">DAG3</option>
+				Veuillez indiquer l'aile à laquelle couper Internet :
+				<select name="aile">
+					<option value="1.A">1.A</option>
+					<option value="1.B">1.B</option>
+					<option value="1.C">1.C</option>
+					<option value="1.D">1.D</option>
+					<option value="2.A">2.A</option>
+					<option value="2.B">2.B</option>
+					<option value="2.C">2.C</option>
+					<option value="2.D">2.D</option>
 				</select>
 				
 				<center><input type="submit" value="Voter !" /></center>

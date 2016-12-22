@@ -2,13 +2,10 @@ body {
 	background: black;
 	color: white;
 	font-family: Verdana, sans-serif;
-	/*color: lime;
-	font-family: Courier, monospace;*/
 }
 
 a{
 	color: white;
-	/*color: lime;*/
 }
 
 
@@ -113,6 +110,10 @@ span.nonTranche {
 	font-weight: bold;
 }
 
+/*
+***************************************************************
+*/
+
 div.commentaire {
 	border-top: solid;
 	border-left: solid;
@@ -134,10 +135,8 @@ span.repondu {
 }
 
 span.time {
-	/*color: green;*/
+	color: green;
 	font-weight: bold;
-	color: #808080;
-	font-style: italic;
 }
 
 div.reponse {

@@ -10,34 +10,34 @@
 	<meta name="Supélec Rézo" content="Sith Web de la liste Supélec Rézo 2016" />
 	
 	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script language="javascript" type="text/javascript" src="librairies/p5.js"></script>
+	<script language="javascript" type="text/javascript" src="librairies/p5.dom.js"></script>
+	<script language="javascript" type="text/javascript" src="src/main.js"></script>
+	<script language="javascript" type="text/javascript" src="src/Cell.js"></script>
+	<script language="javascript" type="text/javascript" src="src/Player.js"></script>
+	<script language="javascript" type="text/javascript" src="src/Game.js"></script>
 	
 	<title>Sith Web Qu.tar.gz</title>
 </head>
 
 <body>
 <?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
-	<?php include("inc/header.php"); ?>
+	<?php include("../inc/header.php"); ?>
 	
 	<br/><br/>
+
+<?php // ON AFFICHE LE JEU ?>	
+	<div id="sketch-holder"></div>
 	
-<?php // TEXTE DE CONFIRMATION ?>
-	<div>
-		<p>
-			Etes-vous sûr de vouloir remercier le Président ?
-		</p>
-	</div>
-
-<?php // BOUTON DE CONFIRMATION ?>
-	<div class="form">
-		<form action="merci.php" method="post">
-			<p>
-				<center><input type="submit" value="Je suis sûr !" /></center>
-			</p>
-		</form>
-	</div>
-
+	<br/>
+	
+	<p>
+		Retour à la <a href="index.php">page d'accueil</a>.
+	</p>
+	
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
-	<?php include("inc/footer.php"); ?>
+	<?php include("../inc/footer.php"); ?>
 	
 </body>
 </html>

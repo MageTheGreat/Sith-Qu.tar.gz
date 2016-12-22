@@ -1,6 +1,8 @@
+<?php // ON FORCE LES GENS A SE CONNECTER ?>
 <?php include("../inc/connected.php"); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<?php // DEFINITION DES META-DONNEES, FEUILLE DE STYLE, ET ICONE ?>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,8 +15,10 @@
 </head>
 
 <body>
+<?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
 	<?php include("../inc/header.php"); ?>
 	
+<?php // ON RECUPERE LES INFOS DE L'UTILISATEUR ?>
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
 		$reponse = $bdd->prepare('SELECT nom, prenom FROM ids WHERE user=?');
@@ -30,6 +34,7 @@
 	
 	<br/><br/>
 	
+<?php // ON VERIFIE LA REPONSE ?>
 	<div>
 		<?php
 			$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
@@ -42,6 +47,7 @@
 			}
 			$reponse->closeCursor();
 			
+// SI L'UTILISATEUR A TROUVE LA BONNE REPONSE, ON L'AJOUTE A LA BASE DE DONNEES DES SAUVES
 			if($_POST['reponse'] == $answer)
 			{
 				echo "Vous avez répondu correctement à l'énigme.";
@@ -49,6 +55,7 @@
 				$reponse->execute(array($infos['nom'], $infos['prenom'], date('y-m-d')));
 				$reponse->closeCursor();
 			}
+// SINON, ON L'INFORME QU'IL N'A PAS TROUVE LA REPONSE
 			else
 			{
 				echo "Vous n'avez pas obtenu la réponse à l'énigme.";
@@ -61,16 +68,9 @@
 	<p>
 		Retour à la <a href="..\index.php">page d'accueil</a>.
 	</p>
-	
-	<br/>
-	
-	<hr/>
-	
-	<div class="footer">
-		Mentions légales
-	</div>
-	
-	<br/>
+
+<?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
+	<?php include("../inc/footer.php"); ?>
 	
 </body>
 </html>
