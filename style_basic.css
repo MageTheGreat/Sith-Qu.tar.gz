@@ -89,9 +89,7 @@ div.sketch-holder {
 }
 
 span.nom {
-	/*color: blue;*/
-	/*color: #0080ff;*/
-	color: white;
+	color: blue;
 	font-weight: bold;
 }
 
@@ -110,24 +108,16 @@ span.nonTranche {
 	font-weight: bold;
 }
 
-/*
-***************************************************************
-*/
-
 div.commentaire {
 	border-top: solid;
 	border-left: solid;
 	border-bottom: solid;
-	border-right: solid;
-	border-radius: 10pt;
 	padding: 10pt;
 	padding-left: 20pt;
-	margin-left: 10pt;
-	background-color: #202020;
-	/*border-color: gold;*/
-	border-color: #202020;
-	margin-right: 20pt;
-	color: #c0c0c0;
+	padding-bottom: 20pt;
+	border-color: white;
+	margin-left: 20pt;
+	margin-right: 10%;
 }
 
 span.repondu {
@@ -140,44 +130,30 @@ span.time {
 }
 
 div.reponse {
-	padding-left: 15pt;
-	padding-top: 5pt;
-	padding-bottom: 5pt;
-	border: 1pt solid;
-	border-radius: 5pt;
-	background-color: #404040;
-	/*border-color: gold;*/
-	border-color: #404040;
+	margin-left: 30pt;
+	padding-left: 10pt;
+	padding-bottom: 10pt;
+	border-left: 1pt solid;
+	border-bottom: 1pt solid;
 }
 
 div.addReponse {
-	padding-left: 5pt;
+	margin-left: 30pt;
+}
+
+div.addCommentaire {
+	padding-top: 20pt;
+	padding-bottom: 20pt;
+	font-weight: bold;
+	font-size: 150%;
+	margin-left: 5%;
+	margin-right: 30%;
+}
+
+span.comm {
+	color: gold;
 }
 
 input[type="submit"] {
-	background-color: #606060;
-	border: 1pt solid;
-	border-radius: 10pt;
-	border-color: #606060;
-	color: #c0c0c0;
-	padding: 5pt;
-	font-weight: bold;
-}
-
-input[type="text"] {
-	background-color: #808080;
-	border: 1pt solid;
-	border-radius: 5pt;
-	border-color: #808080;
-	padding: 5pt;
-	font-weight: bold;
-}
-
-textarea {
-	background-color: #808080;
-	border: 1pt solid;
-	border-radius: 5pt;
-	border-color: #808080;
-	padding: 5pt;
 	font-weight: bold;
 }

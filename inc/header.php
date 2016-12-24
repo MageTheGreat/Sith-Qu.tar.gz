@@ -1,3 +1,5 @@
+<?php // SI LA SESSION N'EST PAS ACTIVE, ON LA DEMARRE ?>
+<?php // SI L'UTILISATEUR NE S'EST PAS ENCORE CONNECTE, ON DETRUIT LA SESSION ET ON LE RENVOIT A L'INDEX POUR QU'IL SE CONNECTE ?>
 <?php
 	if(session_status() != PHP_SESSION_ACTIVE)
 	{
@@ -10,21 +12,25 @@
 	}
 ?>
 
+<?php // ON PLACE ICI LE CODE HTML CORRESPONDANT A L'EN-TETE DE CHAQUE PAGE DU SITH ?>
 <header>
 	<div class="header">
+<?php // ON CHERCHE LE LOGO DU REZO A AFFICHER A GAUCHE ?>
 		<?php if(file_exists("img/Logo_Rezo_w.png"))
 		{ ?>
-			<img class="logoRezo1" src="img/Logo_Rezo_w.png" width=15%/>
+			<img class="logoRezo1" src="img/Logo_Liste_alpha.png" width=15%/>
 		<?php }
 		else
 		{ ?>
-			<img class="logoRezo1" src="../img/Logo_Rezo_w.png" width=15%/>
+			<img class="logoRezo1" src="../img/Logo_Liste_alpha.png" width=15%/>
 		<?php } ?>
+<?php // ON AFFICHE LE MESSAGE D'INTRODUCTION ?>
 		<div class="intro">
 			<p>
-				Voici le Sith Web de la liste du Rézo 2016 <span class="listName">Qu.tar.gz</span> !
+				Voici le Sith Web de la liste du Rézo 2017 <span class="listName">Qu.tar.gz</span> !
 			</p>
 		</div>
+<?php // ON AFFICHE LE GESTIONNAIRE DE CONNEXION, OU BIEN SON ID S'IL EST DEJA CONNECTE ?>
 		<?php if(!isset($_SESSION['user']))
 			{ ?>
 				<div class="connect">
@@ -48,6 +54,15 @@
 				<div class="connect">
 					<p>
 						Vous êtes connecté en tant que <span class="nom"><?php echo($_SESSION['user']); ?></span>.
+						<br/><br/>
+						<?php if(isset($_SESSION['tranche']) && $_SESSION['tranche'])
+						{ ?>
+							<span class="tranche">Vous n'avez plus accès à Internet !</span>
+						<?php }
+						else
+						{ ?>
+							<span class="nonTranche">Vous avez accès à Internet !</span>
+						<?php } ?>
 						<br/><br/>
 						<?php
 						if(file_exists("logout.php"))

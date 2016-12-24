@@ -23,8 +23,9 @@
 	<br/><br/>
 	
 <?php // SI LA PERSONNE N'A PAS ENCORE VOTE, ON AJOUTE SON VOTE A LA BASE DE DONNEES DES PARTICIPATIONS ?>
+<?php // SI LA VARIABLE DE FORMULAIRE N'EXISTE PAS, ON NE S'EN SERT PAS POUR NE PAS GENERER D'ERREUR ?>
 	<?php
-		if(!participe("vote"))
+		if(!participe("vote") && isset($_POST['serie']))
 		{
 			addParticipation("vote");
 			

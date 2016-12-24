@@ -36,7 +36,7 @@
 			Cette année, les listeux du Rézo vous ont préparé des divertissements on ne peut plus qualis ! Au programme, vous trouverez :
 			<ul>
 				<li>Un magnifique logo, le <span class="listName">Queutar.gz</span> : <br/><img class="logoListe" src="img/Logo_Liste_alpha.png" width=30%/></li>
-				<li>Un teaser vidéo digne des plus grands réalisateurs de science-fiction, le <i>(Nom quali a venir)</i> : <br/><i>(A venir)</i></li>
+				<li>Un teaser vidéo digne des plus grands réalisateurs de science-fiction, le <i>(Nom quali à venir)</i> : <br/><i>(A venir)</i></li>
 				<li>Une chorégraphie spécialement créée par des artistes de renom, la <span class="listName">Corée du Nord</span> : <br/><i>(A venir)</i></li>
 			</ul>
 		</p>
@@ -55,7 +55,7 @@
 	
 	<div class="jeux">
 		<p>
-			Vous aurez aussi l'occasion de participer à des jeux et des votes afin de priver des adhérents d'Internet, ainsi que de vous rendre l'accès dans le cas où vous en auriez été vous-même privé.
+			Vous aurez aussi l'occasion de participer à des jeux et des votes afin de priver des adhérents d'Internet, ainsi que de vous en rendre l'accès dans le cas où vous en auriez été vous-même privé.
 			<br/>
 			Pour voter, cliquez sur <a href="vote.php">ce lien</a>.
 			<br/>

@@ -18,7 +18,23 @@
 <?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
 	<?php include("inc/header.php"); ?>
 	
-	<br/><br/>
+	<br/>
+	
+	
+<?php // ON AFFICHE LE FORMULAIRE D'AJOUT DE COMMENTAIRE ?>
+	<div class="addCommentaire">
+		AJOUTER UN <span class="comm">COMMENTAIRE</span>
+		<br/><br/>
+		<form action="commentaires.php" method="post">
+			<input type="hidden" name="user" value=<?php echo $_SESSION['user']; ?> />
+			
+			<!-- <input type="text" name="comm" placeholder="Votre commentaire" /> -->
+			<textarea rows=5 cols=50 name="comm" placeholder="Votre commentaire"></textarea>
+			<br/>
+			<input type="submit" value="Envoyer un commentaire" /><br/>
+		</form>
+	</div>
+	<br/><br/><br/>
 	
 <?php // S'IL LE FAUT, ON AJOUTE LES COMMENTAIRES OU LES REPONSES ?>
 	<?php
@@ -50,7 +66,7 @@
 		<div class="commentaire">
 			<span class="nom"><?php echo $ids['user']; ?></span> a écrit à <span class="time"><?php echo $ids['heure']; ?></span> :
 			<br/>
-			<?php echo $ids['texte']; ?>
+			<?php echo nl2br($ids['texte']); ?>
 			<hr/><br/>
 	<?php
 // ON CHERCHE TOUTES LES REPONSES ASSOCIEES
@@ -62,7 +78,7 @@
 			<div class="reponse">
 				<span class="nom"><?php echo $texts['user']; ?></span> <span class="repondu">a répondu à</span> <span class="time"><?php echo $texts['heure']; ?></span> :
 				<br/>
-				<?php echo $texts['texte']; ?>
+				<?php echo nl2br($texts['texte']); ?>
 			</div>
 			<br/>
 			<?php }
@@ -75,35 +91,17 @@
 					<input type="hidden" name="user" value=<?php echo $_SESSION['user']; ?> />
 					
 					<!-- <input type="text" name="reponse" placeholder="Votre réponse" /> -->
+					<br/>
 					<textarea rows=5 cols=50 name="reponse" placeholder="Votre réponse"></textarea>
 					<br/>
 					<input type="submit" value="Envoyer une réponse" />
 				</form>
 			</div>
 		</div>
-		<br/><br/>
+		<br/><br/><br/>
 	<?php }
 	$reponse->closeCursor();
 ?>
-
-
-<?php // ON AFFICHE LE FORMULAIRE D'AJOUT DE COMMENTAIRE ?>
-	<strong>*** NOUVEAU COMMENTAIRE ***</strong>
-	<div class="addCommentaire">
-		<form action="commentaires.php" method="post">
-			<input type="hidden" name="user" value=<?php echo $_SESSION['user']; ?> />
-			
-			<input type="text" name="comm" placeholder="Votre commentaire" />
-			<br/>
-			<input type="submit" value="Envoyer un commentaire" />
-		</form>
-	</div>
-	<br/><br/>
-
-<?php // ON PROPOSE UN LIEN POUR RETOURNER A L'INDEX ?>
-	<p>
-		Retour à la <a href="..\index.php">page d'accueil</a>.
-	</p>
 
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
 	<?php include("inc/footer.php"); ?>

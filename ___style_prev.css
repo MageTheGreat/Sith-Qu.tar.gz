@@ -2,10 +2,13 @@ body {
 	background: black;
 	color: white;
 	font-family: Verdana, sans-serif;
+	/*color: lime;
+	font-family: Courier, monospace;*/
 }
 
 a{
 	color: white;
+	/*color: lime;*/
 }
 
 
@@ -20,9 +23,9 @@ div.header {
 img.logoRezo1 {
 	border-bottom: solid;
 	border-right: solid;
-	padding-top: 0pt;
-	padding-right: 0pt;
-	padding-bottom: 0pt;
+	padding-top: 10pt;
+	padding-right: 10pt;
+	padding-bottom: 15pt;
 }
 
 div.intro {
@@ -95,65 +98,5 @@ span.nom {
 
 span.vote {
 	color: red;
-	font-weight: bold;
-}
-
-span.tranche {
-	color: red;
-	font-weight: bold;
-}
-
-span.nonTranche {
-	color: lime;
-	font-weight: bold;
-}
-
-div.commentaire {
-	border-top: solid;
-	border-left: solid;
-	border-bottom: solid;
-	padding: 10pt;
-	padding-left: 20pt;
-	padding-bottom: 20pt;
-	border-color: white;
-	margin-left: 20pt;
-	margin-right: 10%;
-}
-
-span.repondu {
-	color: #808080;
-}
-
-span.time {
-	color: green;
-	font-weight: bold;
-}
-
-div.reponse {
-	margin-left: 30pt;
-	padding-left: 10pt;
-	padding-bottom: 10pt;
-	border-left: 1pt solid;
-	border-bottom: 1pt solid;
-}
-
-div.addReponse {
-	margin-left: 30pt;
-}
-
-div.addCommentaire {
-	padding-top: 20pt;
-	padding-bottom: 20pt;
-	font-weight: bold;
-	font-size: 150%;
-	margin-left: 5%;
-	margin-right: 30%;
-}
-
-span.comm {
-	color: gold;
-}
-
-input[type="submit"] {
 	font-weight: bold;
 }
