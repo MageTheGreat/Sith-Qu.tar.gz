@@ -34,7 +34,7 @@
 		}
 		
 // ON SE CONNECTE A LA BSE DE DONNEES DES COMPTES
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
 		$ok = false;
 		$reponse = $bdd->prepare('SELECT pass FROM ids WHERE user=?');
 		$reponse->execute(array($_POST['user']));

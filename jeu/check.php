@@ -20,7 +20,7 @@
 	
 <?php // ON RECUPERE LES INFOS DE L'UTILISATEUR ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
 		$reponse = $bdd->prepare('SELECT nom, prenom FROM ids WHERE user=?');
 		$reponse->execute(array($_SESSION['user']));
 		$infos = array('prenom' => '', 'nom' => '');
@@ -37,7 +37,7 @@
 <?php // ON VERIFIE LA REPONSE ?>
 	<div>
 		<?php
-			$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
 			$answer = '';
 			$reponse = $bdd->prepare('SELECT reponse FROM enigmes WHERE id=?');
 			$reponse->execute(array($_POST['id']));

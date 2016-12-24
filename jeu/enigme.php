@@ -27,7 +27,7 @@
 		addParticipation("jeu");
 
 // ON CHOISIT ALEATOIREMENT UNE ENIGME		
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
 		$max = 0;
 		$reponse = $bdd->query('SELECT MAX(id) FROM enigmes');
 		while($donnees = $reponse->fetch())
