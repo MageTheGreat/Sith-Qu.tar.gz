@@ -24,7 +24,7 @@
 	<div class="form">
 		<form action="res_serie.php" method="post">
 			<p>
-				Veuillez indiquer la voie à laquelle couper Internet :
+				Veuillez indiquer la série à laquelle couper Internet :
 				<select name="serie">
 					<option value="A">A</option>
 					<option value="B">B</option>

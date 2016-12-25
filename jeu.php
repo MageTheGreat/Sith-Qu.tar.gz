@@ -22,7 +22,7 @@
 	
 <?php // ON RECUPERE LE NOM DU JEU DU JOUR ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 		$reponse = $bdd->prepare('SELECT jeuName FROM jours WHERE date=?');
 		$reponse->execute(array(date('y-m-d')));
 		$jeuName = "";

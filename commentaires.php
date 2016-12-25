@@ -40,16 +40,16 @@
 	<?php
 		if(isset($_POST['comm']) && $_POST['comm'] != '')
 		{
-			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 			$reponse = $bdd->prepare('INSERT INTO commentaires (texte, reponse, user, heure, date) VALUES (?, 0, ?, ?, ?)');
-			$reponse->execute(array($_POST['comm'], $_POST['user'], date('H:i:s'), date('y-m-d')));
+			$reponse->execute(array(htmlspecialchars($_POST['comm']), $_POST['user'], date('H:i:s'), date('y-m-d')));
 			$reponse->closeCursor();
 		}
 		if(isset($_POST['reponse']) && $_POST['reponse'] != '')
 		{
-			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 			$reponse = $bdd->prepare('INSERT INTO commentaires (texte, reponse, user, heure, date) VALUES (?, ?, ?, ?, ?)');
-			$reponse->execute(array($_POST['reponse'], $_POST['id'], $_POST['user'], date('H:i:s'), date('y-m-d')));
+			$reponse->execute(array(htmlspecialchars($_POST['reponse']), $_POST['id'], $_POST['user'], date('H:i:s'), date('y-m-d')));
 			$reponse->closeCursor();
 		}
 	?>
@@ -57,7 +57,7 @@
 <?php // ON AFFICHE TOUS LES MESSAGES ET COMMENTAIRES ?>
 <?php
 // ON CHERCHE LES COMMENTAIRES DU JOUR, IDENTIFIES PAR UN ATTRIBUT REPONSE A 0
-	$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+	$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 	$reponse = $bdd->prepare('SELECT id, texte, user, heure FROM commentaires WHERE reponse=0 AND date=?');
 	$reponse->execute(array(date('y-m-d')));
 	while($ids = $reponse->fetch())

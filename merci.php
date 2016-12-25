@@ -20,7 +20,7 @@
 
 <?php // ON CHERCHE LES INFOS DE L'UTILISATEUR ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 		$reponse = $bdd->prepare('SELECT nom, prenom FROM ids WHERE user=?');
 		$reponse->execute(array($_SESSION['user']));
 		$infos = array('prenom' => '', 'nom' => '');
@@ -47,7 +47,7 @@
 
 <?php // AJOUT DES DONNEES DE L'UTILISATEUR DANS LA BASE DES REMERCIEMENTS ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 		$reponse = $bdd->prepare('INSERT INTO merci (nom, prenom, date) VALUES (?, ?, ?)');
 		$reponse->execute(array($infos['nom'], $infos['prenom'], date('y-m-d')));
 		$reponse->closeCursor();

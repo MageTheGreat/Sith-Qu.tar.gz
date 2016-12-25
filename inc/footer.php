@@ -23,10 +23,31 @@
 <?php // ON AFFICHE LE PIED DE PAGE ?>
 		Mentions légales
 		<br/><br/>
-		<a href="index.php">Retour à la page d'accueil</a><br/>
+		<?php if(file_exists("index.php"))
+		{ ?>
+			<a href="index.php">Retour à la page d'accueil</a><br/>
+		<?php }
+		else
+		{ ?>
+			<a href="../index.php">Retour à la page d'accueil</a><br/>
+		<?php } ?>
 		<br/>
-		<a href="commentaires.php">Ajouter un commentaire</a><br/>
-		<a href="chatons.php">Voir des chatons</a><br/>
+		<?php if(file_exists("commentaire.php"))
+		{ ?>
+			<a href="commentaires.php">Ajouter un commentaire</a><br/>
+		<?php }
+		else
+		{ ?>
+			<a href="../commentaires.php">Ajouter un commentaire</a><br/>
+		<?php } ?>
+		<?php if(file_exists("chatons.php"))
+		{ ?>
+			<a href="chatons.php">Voir des chatons</a><br/>
+		<?php }
+		else
+		{ ?>
+			<a href="../chatons.php">Voir des chatons</a><br/>
+		<?php } ?>
 	</div>
 	
 	<br/>

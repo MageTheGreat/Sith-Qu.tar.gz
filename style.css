@@ -17,12 +17,11 @@ div.header {
 	align-items: center;
 }
 
-img.logoRezo1 {
+div.logoRezo1 {
 	border-bottom: solid;
 	border-right: solid;
-	padding-top: 0pt;
-	padding-right: 0pt;
-	padding-bottom: 0pt;
+	padding: 0pt;
+	width: 15%;
 }
 
 div.intro {
@@ -152,8 +151,4 @@ div.addCommentaire {
 
 span.comm {
 	color: gold;
-}
-
-input[type="submit"] {
-	font-weight: bold;
 }

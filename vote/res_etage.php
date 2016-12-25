@@ -29,7 +29,7 @@
 		{
 			addParticipation("vote");
 			
-			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 			$votes = 0;
 			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'etage\' AND voteName=? AND date=?');
 			$reponse->execute(array($_POST['etage'], date('y-m-d')));
@@ -54,7 +54,7 @@
 	
 <?php // ON RECUPERE LES VOTES EN VUE DE LES AFFICHER ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 		$etages = array('1.A1', '1.A2', '1.A3', '1.A4', '1.B1', '1.B2', '1.B3', '1.B4', 
 						'1.C1', '1.C2', '1.C3', '1.C4', '1.D1', '1.D2', '1.D3', '1.D4', 
 						'2.A1', '2.A2', '2.A3', '2.A4', '2.B1', '2.B2', '2.B3', '2.B4', 

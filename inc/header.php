@@ -16,14 +16,16 @@
 <header>
 	<div class="header">
 <?php // ON CHERCHE LE LOGO DU REZO A AFFICHER A GAUCHE ?>
-		<?php if(file_exists("img/Logo_Rezo_w.png"))
-		{ ?>
-			<img class="logoRezo1" src="img/Logo_Liste_alpha.png" width=15%/>
-		<?php }
-		else
-		{ ?>
-			<img class="logoRezo1" src="../img/Logo_Liste_alpha.png" width=15%/>
-		<?php } ?>
+		<div class="logoRezo1">
+			<?php if(file_exists("img/Logo_Rezo_w.png"))
+			{ ?>
+				<a href="index.php"><img src="img/Logo_Liste_alpha.png" width="100%"></a>
+			<?php }
+			else
+			{ ?>
+				<a href="../index.php"><img src="../img/Logo_Liste_alpha.png" width="100%"></a>
+			<?php } ?>
+		</div>
 <?php // ON AFFICHE LE MESSAGE D'INTRODUCTION ?>
 		<div class="intro">
 			<p>

@@ -24,7 +24,7 @@
 	
 <?php // ON CHERCHE LE LIEN DU VOTE DU JOUR ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 		$reponse = $bdd->prepare('SELECT voteLink FROM jours WHERE date=?');
 		$reponse->execute(array(date('y-m-d')));
 		$voteLink = "";

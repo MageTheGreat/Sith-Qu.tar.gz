@@ -29,7 +29,7 @@
 		{
 			addParticipation("vote");
 			
-			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 			$votes = 0;
 			$reponse = $bdd->prepare('SELECT nbVotes FROM votes WHERE voteType=\'rez\' AND voteName=? AND date=?');
 			$reponse->execute(array($_POST['rez'], date('y-m-d')));
@@ -54,7 +54,7 @@
 	
 <?php // ON RECUPERE LES VOTES EN VUE DE LES AFFICHER ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8',	'root',	'');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
 		$rezs = array('Rez1', 'Rez2');
 		$votes = array('Rez1' => 0, 'Rez2' => 0);
 		foreach($rezs as $rez)
