@@ -25,7 +25,7 @@
 	<div class="addCommentaire">
 		AJOUTER UN <span class="comm">COMMENTAIRE</span>
 		<br/><br/>
-		<form action="commentaires.php" method="post">
+		<form action="commentaires.php#end" method="post">
 			<input type="hidden" name="user" value=<?php echo $_SESSION['user']; ?> />
 			
 			<!-- <input type="text" name="comm" placeholder="Votre commentaire" /> -->
@@ -52,6 +52,13 @@
 			$reponse->execute(array(htmlspecialchars($_POST['reponse']), $_POST['id'], $_POST['user'], date('H:i:s'), date('y-m-d')));
 			$reponse->closeCursor();
 		}
+// ON CHERCHE, SI ELLE EXISTE, L'ANCRE VERS LAQUELLE "POINTE" L'URL
+	$anchor = 0;
+	$highligh = false;
+	if(isset($_POST['anchor']))
+	{
+		$anchor = $_POST['anchor'];
+	}
 	?>
 
 <?php // ON AFFICHE TOUS LES MESSAGES ET COMMENTAIRES ?>
@@ -62,33 +69,57 @@
 	$reponse->execute(array(date('y-m-d')));
 	while($ids = $reponse->fetch())
 	{ ?>
+<?php // ON AJOUTE UNE ANCRE PAR COMMENTAIRE ?>
+		<a id=<?php echo $ids['id']; ?>></a>
 <?php // ON LES AFFICHE ?>
 		<div class="commentaire">
-			<span class="nom"><?php echo $ids['user']; ?></span> a écrit à <span class="time"><?php echo $ids['heure']; ?></span> :
+			<span class="nom"><?php echo $ids['user']; ?></span> <span class="ecrit">a écrit à</span> <span class="time"><?php echo $ids['heure']; ?></span> :
 			<br/>
 			<?php echo nl2br($ids['texte']); ?>
 			<hr/><br/>
 	<?php
 // ON CHERCHE TOUTES LES REPONSES ASSOCIEES
-			$reponse2 = $bdd->prepare('SELECT texte, user, heure FROM commentaires WHERE reponse=? AND date=?');
+			if($anchor == $ids['id'])
+			{
+				$highligh = true;
+			}
+			$last = $ids['id'];
+			$reponse2 = $bdd->prepare('SELECT id, texte, user, heure FROM commentaires WHERE reponse=? AND date=?');
 			$reponse2->execute(array($ids['id'], date('y-m-d')));
 			while($texts = $reponse2->fetch())
-			{ ?>
+			{
+				$last = $texts['id']; ?>
+<?php // ON AJOUTE UNE ANCRE PAR REPONSE ?>
+				<a id=<?php echo $texts['id']; ?>></a>
 <?php // ON LES AFFICHE ?>
-			<div class="reponse">
-				<span class="nom"><?php echo $texts['user']; ?></span> <span class="repondu">a répondu à</span> <span class="time"><?php echo $texts['heure']; ?></span> :
+				<?php if($highligh)
+				{ 
+					$highligh = false;	?>
+					<div class="highlighReponse">
+				<?php }
+				else
+				{ ?>
+					<div class="reponse">
+				<?php } ?>
+					<span class="nom"><?php echo $texts['user']; ?></span> <span class="repondu">a répondu à</span> <span class="time"><?php echo $texts['heure']; ?></span> :
+					<br/>
+					<?php echo nl2br($texts['texte']); ?>
+				</div>
 				<br/>
-				<?php echo nl2br($texts['texte']); ?>
-			</div>
-			<br/>
-			<?php }
+				<?php
+				if($anchor == $last)
+				{
+					$highligh = true;
+				}
+			}
 			$reponse2->closeCursor();
 		?>
 <?php // ON AFFICHE LE FORMULAIRE D'AJOUT DE REPONSE A LA FIN DE TOUTES LES REPONSES ?>
 			<div class="addReponse">
-				<form action="commentaires.php" method="post">
+				<form action=<?php echo 'commentaires.php#'.$last; ?> method="post">
 					<input type="hidden" name="id" value=<?php echo $ids['id']; ?> />
 					<input type="hidden" name="user" value=<?php echo $_SESSION['user']; ?> />
+					<input type="hidden" name="anchor" value=<?php echo $last; ?> />
 					
 					<!-- <input type="text" name="reponse" placeholder="Votre réponse" /> -->
 					<br/>
@@ -102,6 +133,9 @@
 	<?php }
 	$reponse->closeCursor();
 ?>
+
+<?php // AJOUT DE L'ANCRE FINALE ?>
+<a id="end"></a>
 
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
 	<?php include("inc/footer.php"); ?>

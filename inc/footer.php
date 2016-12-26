@@ -32,7 +32,7 @@
 			<a href="../index.php">Retour à la page d'accueil</a><br/>
 		<?php } ?>
 		<br/>
-		<?php if(file_exists("commentaire.php"))
+		<?php if(file_exists("commentaires.php"))
 		{ ?>
 			<a href="commentaires.php">Ajouter un commentaire</a><br/>
 		<?php }
