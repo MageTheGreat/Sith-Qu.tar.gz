@@ -19,8 +19,33 @@
 	<?php include("inc/header.php"); ?>
 	
 	<br/>
-	
-	
+
+<?php // ON CHERCHE S'IL EXISTE UN COMMENTAIRE OU UNE REPONSE A EDITER ?>
+<?php
+	$edit = 0;
+	if(isset($_GET['edit']))
+	{
+		$edit = $_GET['edit'];
+	}
+	elseif(isset($_POST['idEdit']))
+	{
+		if(isset($_POST['comm']) && $_POST['comm'] != '')
+		{
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
+			$reponse = $bdd->prepare('UPDATE commentaires SET texte = ?, heure = ? WHERE id=?');
+			$reponse->execute(array(htmlspecialchars($_POST['comm']), date('H:i:s'), $_POST['idEdit']));
+			$reponse->closeCursor();
+		}
+		if(isset($_POST['reponse']) && $_POST['reponse'] != '')
+		{
+			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
+			$reponse = $bdd->prepare('UPDATE commentaires SET texte = ?, heure = ? WHERE id=?');
+			$reponse->execute(array(htmlspecialchars($_POST['reponse']), date('H:i:s'), $_POST['idEdit']));
+			$reponse->closeCursor();
+		}
+	}
+?>
+
 <?php // ON AFFICHE LE FORMULAIRE D'AJOUT DE COMMENTAIRE ?>
 	<div class="addCommentaire">
 		AJOUTER UN <span class="comm">COMMENTAIRE</span>
@@ -38,19 +63,22 @@
 	
 <?php // S'IL LE FAUT, ON AJOUTE LES COMMENTAIRES OU LES REPONSES ?>
 	<?php
-		if(isset($_POST['comm']) && $_POST['comm'] != '')
+		if(!isset($_POST['idEdit']))
 		{
-			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
-			$reponse = $bdd->prepare('INSERT INTO commentaires (texte, reponse, user, heure, date) VALUES (?, 0, ?, ?, ?)');
-			$reponse->execute(array(htmlspecialchars($_POST['comm']), $_POST['user'], date('H:i:s'), date('y-m-d')));
-			$reponse->closeCursor();
-		}
-		if(isset($_POST['reponse']) && $_POST['reponse'] != '')
-		{
-			$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
-			$reponse = $bdd->prepare('INSERT INTO commentaires (texte, reponse, user, heure, date) VALUES (?, ?, ?, ?, ?)');
-			$reponse->execute(array(htmlspecialchars($_POST['reponse']), $_POST['id'], $_POST['user'], date('H:i:s'), date('y-m-d')));
-			$reponse->closeCursor();
+			if(isset($_POST['comm']) && $_POST['comm'] != '')
+			{
+				$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
+				$reponse = $bdd->prepare('INSERT INTO commentaires (texte, reponse, user, heure, date) VALUES (?, 0, ?, ?, ?)');
+				$reponse->execute(array(htmlspecialchars($_POST['comm']), $_POST['user'], date('H:i:s'), date('y-m-d')));
+				$reponse->closeCursor();
+			}
+			if(isset($_POST['reponse']) && $_POST['reponse'] != '')
+			{
+				$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
+				$reponse = $bdd->prepare('INSERT INTO commentaires (texte, reponse, user, heure, date) VALUES (?, ?, ?, ?, ?)');
+				$reponse->execute(array(htmlspecialchars($_POST['reponse']), $_POST['id'], $_POST['user'], date('H:i:s'), date('y-m-d')));
+				$reponse->closeCursor();
+			}
 		}
 // ON CHERCHE, SI ELLE EXISTE, L'ANCRE VERS LAQUELLE "POINTE" L'URL
 	$anchor = 0;
@@ -74,8 +102,35 @@
 <?php // ON LES AFFICHE ?>
 		<div class="commentaire">
 			<span class="nom"><?php echo $ids['user']; ?></span> <span class="ecrit">a écrit à</span> <span class="time"><?php echo $ids['heure']; ?></span> :
+<?php // SI L'UTILISATEUR EST L'AUTEUR DU COMMENTAIRE, IL PEUT L'EDITER ?>
+		<?php if($_SESSION['user'] == $ids['user'])
+		{ ?>
+			<a href=<?php echo "commentaires.php?edit=".$ids['id']."#".$ids['id']; ?> class="edition">(Editer)</a>
+		<?php } ?>
 			<br/>
-			<?php echo nl2br($ids['texte']); ?>
+			<?php
+			if($edit == $ids['id'] && $ids['user'] == $_SESSION['user'])
+			{ ?>
+<?php // SI LE COMMENTAIRE DOIT ETRE EDITE ET QUE L'UTILISATEUR A LE DROIT ?>
+				<div class="addCommentaire">
+					EDITER UN <span class="comm">COMMENTAIRE</span>
+					<br/><br/>
+					<form action=<?php echo "commentaires.php#".$ids['id']; ?> method="post">
+						<input type="hidden" name="idEdit" value=<?php echo $ids['id']; ?> />
+						
+						<!-- <input type="text" name="comm" placeholder="Votre commentaire" /> -->
+						<textarea rows=5 cols=50 name="comm"><?php echo $ids['texte']; ?></textarea>
+						<br/>
+						<input type="submit" value="Editer un commentaire" /><br/>
+					</form>
+				</div>
+			<?php }
+			else
+			{
+// SINON, ON L'AFFICHE NORMALEMENT
+				echo nl2br($ids['texte']);
+			}
+			?>
 			<hr/><br/>
 	<?php
 // ON CHERCHE TOUTES LES REPONSES ASSOCIEES
@@ -87,8 +142,7 @@
 			$reponse2 = $bdd->prepare('SELECT id, texte, user, heure FROM commentaires WHERE reponse=? AND date=?');
 			$reponse2->execute(array($ids['id'], date('y-m-d')));
 			while($texts = $reponse2->fetch())
-			{
-				$last = $texts['id']; ?>
+			{ ?>
 <?php // ON AJOUTE UNE ANCRE PAR REPONSE ?>
 				<a id=<?php echo $texts['id']; ?>></a>
 <?php // ON LES AFFICHE ?>
@@ -102,8 +156,37 @@
 					<div class="reponse">
 				<?php } ?>
 					<span class="nom"><?php echo $texts['user']; ?></span> <span class="repondu">a répondu à</span> <span class="time"><?php echo $texts['heure']; ?></span> :
+<?php // SI L'UTILISATEUR EST L'AUTEUR DE LA PREONSE, IL PEUT L'EDITER ?>
+					<?php if($_SESSION['user'] == $texts['user'])
+					{ ?>
+						<a href=<?php echo "commentaires.php?edit=".$texts['id']."#".$texts['id']; ?> class="edition">(Editer)</a>
+					<?php } ?>
 					<br/>
-					<?php echo nl2br($texts['texte']); ?>
+					<?php
+						if($edit == $texts['id'] && $texts['user'] == $_SESSION['user'])
+						{ ?>
+<?php // SI LA REPONSE DOIT ETRE EDITE ET QUE L'UTILISATEUR A LE DROIT ?>
+							<div class="addCommentaire">
+								EDITER UNE <span class="comm">REPONSE</span>
+								<br/><br/>
+								<form action=<?php echo "commentaires.php#".$texts['id']; ?> method="post">
+									<input type="hidden" name="idEdit" value=<?php echo $texts['id']; ?> />
+									<input type="hidden" name="anchor" value=<?php echo $last; ?> />
+									
+									<!-- <input type="text" name="reponse" placeholder="Votre réponse" /> -->
+									<textarea rows=5 cols=50 name="reponse"><?php echo $texts['texte']; ?></textarea>
+									<br/>
+									<input type="submit" value="Editer une réponse" /><br/>
+								</form>
+							</div>
+						<?php }
+						else
+						{
+// SINON, ON L'AFFICHE NORMALEMENT
+							echo nl2br($texts['texte']);
+						}
+						$last = $texts['id']; 
+						?>
 				</div>
 				<br/>
 				<?php
@@ -142,4 +225,3 @@
 	
 </body>
 </html>
-
