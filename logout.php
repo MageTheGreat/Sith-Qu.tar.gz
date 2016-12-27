@@ -1,5 +1,10 @@
-<?php // ON FORCE LES GENS A SE CONNECTER ?>
-<?php include("inc/connected.php"); ?>
+<?php // SI LA SESSION N'EST PAS ACTIVE, ON LA DEMARRE ?>
+<?php
+	if(session_status() != PHP_SESSION_ACTIVE)
+	{
+		session_start();
+	}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <?php // DEFINITION DES META-DONNEES, FEUILLE DE STYLE, ET ICONE ?>
@@ -19,19 +24,27 @@
 	<?php include("inc/header.php"); ?>
 	
 	<br/><br/>
-	
-<?php // LE MOT DU PRESIDENT ?>
-	<div class="textMot">
-		Président, Président, Président !!!
-	</div>
-	
-<?php // LE LIEN POUR DIRE MERCI ?>
-	<div>
-		<p>
-			Vous pouvez remerci le Président en cliquant sur <a href="merci_conf.php">ce lien</a>.
-		</p>
-	</div>
 
+<?php // CODE EFFECTIF DE DECONNEXION ?>
+	<?php
+// SI LES VATIABLES SONT DEFINIES, ON LES DETRUIT
+		if(isset($_SESSION['user']))
+		{
+			unset($_SESSION['user']);
+		}
+		
+		if(isset($_SESSION['connected']))
+		{
+			unset($_SESSION['connected']);
+		}
+		
+// ON DETRUIT LA SESSION (FORCEMENT ACTIVE D'APRES LE HAUT DE LA PAGE)
+		session_destroy();
+		
+// ON RETOURNE A L'INDEX
+		header("Location: index.php");
+	?>
+	
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
 	<?php include("inc/footer.php"); ?>
 	

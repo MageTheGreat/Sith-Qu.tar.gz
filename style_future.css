@@ -17,11 +17,12 @@ div.header {
 	align-items: center;
 }
 
-div.logoRezo1 {
+img.logoRezo1 {
 	border-bottom: solid;
 	border-right: solid;
-	padding: 0pt;
-	width: 15%;
+	padding-top: 0pt;
+	padding-right: 0pt;
+	padding-bottom: 0pt;
 }
 
 div.intro {
@@ -88,7 +89,7 @@ div.sketch-holder {
 }
 
 span.nom {
-	color: blue;
+	color: white;
 	font-weight: bold;
 }
 
@@ -111,16 +112,17 @@ div.commentaire {
 	border-top: solid;
 	border-left: solid;
 	border-bottom: solid;
+	border-right: solid;
+	border-radius: 10pt;
 	padding: 10pt;
 	padding-left: 20pt;
-	padding-bottom: 20pt;
-	border-color: white;
-	margin-left: 20pt;
-	margin-right: 10%;
-}
-
-span.ecrit {
-	color: #808080;
+	margin-left: 10pt;
+	background-color: #202020;
+	border-color: #202020;
+	margin-right: 20pt;
+	color: #c0c0c0;
+	margin-right: 20%;
+	margin-left: 5%;
 }
 
 span.repondu {
@@ -128,46 +130,57 @@ span.repondu {
 }
 
 span.time {
-	color: green;
 	font-weight: bold;
+	color: #808080;
+	font-style: italic;
 }
 
 div.reponse {
-	margin-left: 30pt;
-	padding-left: 10pt;
-	padding-bottom: 10pt;
-	border-left: 1pt solid;
-	border-bottom: 1pt solid;
-}
-div.highlighReponse {
-	margin-left: 30pt;
-	padding-left: 10pt;
-	padding-bottom: 10pt;
-	border-left: 1pt solid;
-	border-bottom: 1pt solid;
-	border-color: gold;
+	padding-left: 15pt;
+	padding-top: 5pt;
+	padding-bottom: 5pt;
+	border: 1pt solid;
+	border-radius: 5pt;
+	background-color: #404040;
+	border-color: #404040;
 }
 
 div.addReponse {
-	margin-left: 30pt;
+	padding-left: 5pt;
 }
 
 div.addCommentaire {
-	padding-top: 20pt;
-	padding-bottom: 20pt;
+	padding-left: 10pt;
+	padding-top: 10pt;
 	font-weight: bold;
 	font-size: 150%;
-	margin-left: 5%;
-	margin-right: 30%;
-}
-
-span.comm {
-	color: gold;
-}
-
-a.edition {
 	color: #808080;
-	font-size: 80%;
-	font-style: italic;
-	text-decoration: none;
+}
+
+input[type="submit"] {
+	background-color: #606060;
+	border: 1pt solid;
+	border-radius: 10pt;
+	border-color: #606060;
+	color: #c0c0c0;
+	padding: 5pt;
+	font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+	background-color: #808080;
+	border: 1pt solid;
+	border-radius: 5pt;
+	border-color: #808080;
+	padding: 5pt;
+	font-weight: bold;
+}
+
+textarea {
+	background-color: #808080;
+	border: 1pt solid;
+	border-radius: 5pt;
+	border-color: #808080;
+	padding: 5pt;
+	font-weight: bold;
 }

@@ -20,22 +20,21 @@
 	
 	<br/><br/>
 	
-<?php // FORMULAIRE DE CHOIX DE LA SERIE ?>
+<?php // FORMULAIRE DE CHOIX DE LA REZ ?>
 	<div class="form">
-		<form action="res_serie.php" method="post">
+		<form action="res_rez.php" method="post">
 			<p>
-				Veuillez indiquer la série à laquelle couper Internet :
-				<select name="serie">
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
+				Veuillez indiquer la Rez à laquelle couper Internet :
+				<select name="rez">
+					<option value="Rez1">Rez1</option>
+					<option value="Rez2">Rez2</option>
 				</select>
 				
 				<center><input type="submit" value="Voter !" /></center>
 			</p>
 		</form>
 	</div>
-
+	
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
 	<?php include("../inc/footer.php"); ?>
 	

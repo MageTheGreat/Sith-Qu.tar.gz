@@ -1,5 +1,8 @@
+<?php // ON FORCE LES GENS A SE CONNECTER ?>
+<?php include("inc/connected.php"); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<?php // DEFINITION DES META-DONNEES, FEUILLE DE STYLE, ET ICONE ?>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,30 +15,29 @@
 </head>
 
 <body>
-
-	<?php include("structure/header.php"); ?>
+<?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
+	<?php include("inc/header.php"); ?>
 	
+	<br/><br/>
+	
+<?php // TEXTE DE CONFIRMATION ?>
 	<div>
 		<p>
-			Vous souhaitez dire merci au Président.
+			Etes-vous sûr de vouloir remercier le Président ?
 		</p>
 	</div>
 
+<?php // BOUTON DE CONFIRMATION ?>
 	<div class="form">
 		<form action="merci.php" method="post">
 			<p>
-				Veuillez entrer vos prénoms et noms :
-				<input type="text" name="prenom" />
-				<input type="text" name="nom" />
-
-				<br/><br/>				
-				
-				<center><input type="submit" value="Remercier le Président !" /></center>
+				<center><input type="submit" value="Je suis sûr !" /></center>
 			</p>
 		</form>
 	</div>
 
-	<?php include("structure/footer.php"); ?>
+<?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
+	<?php include("inc/footer.php"); ?>
 	
 </body>
 </html>

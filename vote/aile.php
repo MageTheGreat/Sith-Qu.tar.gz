@@ -20,22 +20,27 @@
 	
 	<br/><br/>
 	
-<?php // FORMULAIRE DE CHOIX DE LA SERIE ?>
+<?php // FORMULAIRE DE CHOIX DE L'AILE ?>
 	<div class="form">
-		<form action="res_serie.php" method="post">
+		<form action="res_aile.php" method="post">
 			<p>
-				Veuillez indiquer la série à laquelle couper Internet :
-				<select name="serie">
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
+				Veuillez indiquer l'aile à laquelle couper Internet :
+				<select name="aile">
+					<option value="1.A">1.A</option>
+					<option value="1.B">1.B</option>
+					<option value="1.C">1.C</option>
+					<option value="1.D">1.D</option>
+					<option value="2.A">2.A</option>
+					<option value="2.B">2.B</option>
+					<option value="2.C">2.C</option>
+					<option value="2.D">2.D</option>
 				</select>
 				
 				<center><input type="submit" value="Voter !" /></center>
 			</p>
 		</form>
 	</div>
-
+	
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
 	<?php include("../inc/footer.php"); ?>
 	

@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php // ON FORCE LES GENS A SE CONNECTER ?>
+<?php include("inc/connected.php"); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<?php // DEFINITION DES META-DONNEES, FEUILLE DE STYLE, ET ICONE ?>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,38 +15,41 @@
 </head>
 
 <body>
-
-	<?php include("structure/header.php"); ?>
+<?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
+	<?php include("inc/header.php"); ?>
 	
+	<br/><br/>
+	
+<?php // ON RECUPERE LE NOM DU VOTE DU JOUR ?>
 	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=sith-qutargz;charset=utf8',	'root',	'');
-		$reponse = $bdd->prepare('SELECT voteName, voteLink FROM jours WHERE date=?');
+		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
+		$reponse = $bdd->prepare('SELECT voteName FROM jours WHERE date=?');
 		$reponse->execute(array(date('y-m-d')));
-		$voteInfos = array('voteName' => '', 'voteLink' => '');
+		$voteName = "";
 		while($donnees = $reponse->fetch())
 		{
-			$voteInfos['voteName'] = $donnees['voteName'];
-			$voteInfos['voteLink'] = $donnees['voteLink'];
+			$voteName = $donnees['voteName'];
 		}
 		$reponse->closeCursor();
 	?>
 	
+<?php // LA PRESENTATION DU VOTE ?>
 	<div class="textVote">
 		C'est sur cette page qu'une bataille acharnée va se jouer pour savoir quelles voies, séries, groupes de TD, rez ou encore aile ou étage va se trouver sans Internet pour une durée indéterminée !<br/>
-		Vous votez aujourd'hui pour une <span class="vote"><?php echo $voteInfos['voteName']; ?></span>.
+		Vous votez aujourd'hui pour <span class="vote"><?php echo $voteName; ?></span>.
 	</div>
 	
+<?php // LE BOUTON POUR VOTER ?>
 	<div class="form">
 		<form action="voter.php" method="post">
 			<p>
-				<input type="hidden" name="link" value=<?php echo $voteInfos['voteLink']; ?> />
-				
 				<center><input type="submit" value="Voter !" /></center>
 			</p>
 		</form>
 	</div>
-
-	<?php include("structure/footer.php"); ?>
+	
+<?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
+	<?php include("inc/footer.php"); ?>
 	
 </body>
 </html>

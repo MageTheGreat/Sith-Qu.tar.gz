@@ -17,33 +17,47 @@
 <body>
 <?php // INCLUSION DU FICHIER CONTENANT LE CODE HTML DE L'EN-TETE ?>
 	<?php include("inc/header.php"); ?>
+<?php // INCLUSION DU FICHIER INDIQUANT SI LES GENS ONT DEJA JOUE OU NON ?>
+	<?php include("inc/participation.php"); ?>
 	
 	<br/><br/>
-	
-<?php // ON RECUPERE LE NOM DU JEU DU JOUR ?>
+
+<?php // ON CHERCHE LE LIEN DU JEU DU JOUR ?>
 	<?php
 		$bdd = new PDO('mysql:host=localhost;dbname=qutargz;charset=utf8', 'qutargz', 'd1PNeCPnpTGn');
-		$reponse = $bdd->prepare('SELECT jeuName FROM jours WHERE date=?');
+		$reponse = $bdd->prepare('SELECT jeuLink FROM jours WHERE date=?');
 		$reponse->execute(array(date('y-m-d')));
-		$jeuName = "";
+		$jeuLink = "";
 		while($donnees = $reponse->fetch())
 		{
-			$jeuName = $donnees['jeuName'];
+			$jeuLink = $donnees['jeuLink'];
 		}
 		$reponse->closeCursor();
+		
+// SI ON NE TROUVE PAS LE LIEN, ON REDIRIGE VERS L'INDEX
+		if($jeuLink == "")
+		{
+			header("Location: index.php");
+		}
 	?>
 	
-<?php // LA PRESENTATION DU JEU, ON INFORME LES GENS QU'ILS ONT PERDU AU VRAI JEU ?>
-	<div>
-		<p>
-			Tout d'abord, sachez que vous avez perdu au jeu.<br/><br/>
-			Vous jouez aujourd'hui <span class="vote"><?php echo $jeuName; ?></span>.
-		</p>
-	</div>
-	
-	<form action="jouer.php" method="post">
-		<center><input  type="submit" value="Je veux jouer !" /></center>
-	</form>
+<?php // ON REGARDE SI L'UTILISATEUR A DEJA JOUE ?>
+	<?php
+// SI NON, ON LE REDIRIGE VERS LA PAGE DU JEU
+		if(!participe("jeu"))
+		{
+			include("jeu/".$jeuLink);
+		}
+// SINON, ON L'INFORME QU'IL N'A PLUS LE DROIT DE JOUER
+		else
+		{ ?>
+			<p>
+				Vous avez déjà joué !
+				<br/><br/>
+				Retour à la <a href="index.php">page d'accueil</a>.
+			</p>
+		<?php }
+	?>
 	
 <?php // INCLUSION DU FICHIER CONTENANT LE PIED DE PAGE ?>	
 	<?php include("inc/footer.php"); ?>
