@@ -21,7 +21,7 @@ div.logoRezo1 {
 	border-bottom: solid;
 	border-right: solid;
 	padding: 0pt;
-	width: 15%;
+	width: 25%;
 }
 
 div.intro {
@@ -163,4 +163,68 @@ div.addCommentaire {
 
 span.comm {
 	color: gold;
+}
+
+a.edition {
+	color: #808080;
+	font-size: 80%;
+	font-style: italic;
+	text-decoration: none;
+}
+
+div.messageError {
+	font-style: italic;
+	font-weight: bold;
+	color: red;
+	padding: 10pt;
+	margin: 10pt;
+	border: solid 5pt;
+	border-color: red;
+}
+
+div.messageOk {
+	font-style: italic;
+	font-weight: bold;
+	color: green;
+	padding: 10pt;
+	margin: 10pt;
+	border: solid 5pt;
+	border-color: lime;
+}
+
+h1 {
+	color: red;
+}
+
+td {
+	text-align: center;
+}
+
+input.trancher {
+	margin-left: 50pt;
+	font-weight: bold;
+	color: lime;
+	background-color: #808080;
+}
+
+td.last {
+	width: 100%;
+}
+
+th {
+	padding-left: 20pt;
+	padding-right: 20pt;
+	padding-bottom: 10pt;
+	color: gold;
+}
+
+tr:hover {
+	background-color: green;
+}
+
+input.refresh {
+	font-weight: bold;
+	color: red;
+	background-color: #404040;
+	font-size: 125%;
 }

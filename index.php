@@ -57,9 +57,9 @@
 		<p>
 			Vous aurez aussi l'occasion de participer à des jeux et des votes afin de priver des adhérents d'Internet, ainsi que de vous en rendre l'accès dans le cas où vous en auriez été vous-même privé.
 			<br/>
-			Pour voter, cliquez sur <a href="vote.php">ce lien</a>.
+			Pour <span class="vote">voter</span>, cliquez sur <a href="vote.php">ce lien</a>.
 			<br/>
-			Pour jouer, cliquez sur <a href="jeu.php">ce lien</a>.
+			Pour <span class="vote">jouer</span>, cliquez sur <a href="jeu.php">ce lien</a>.
 		<p>
 	</div>
 	

@@ -75,9 +75,9 @@
 			Merci d'avoir voté ! Voici les statistiques en cours :
 			<ul>
 				<?php
-					foreach($votes as $voie => $vote)
+					foreach($votes as $rez => $vote)
 					{ ?>
-						<li><span class="vote"><?php echo $voie; ?></span> : <?php echo $vote; ?> votes.</li>
+						<li><span class="vote"><?php echo $rez; ?></span> : <?php echo $vote; ?> votes.</li>
 					<?php }
 				?>
 			</ul>

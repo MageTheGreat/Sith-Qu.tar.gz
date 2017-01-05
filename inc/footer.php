@@ -34,11 +34,11 @@
 		<br/>
 		<?php if(file_exists("commentaires.php"))
 		{ ?>
-			<a href="commentaires.php">Ajouter un commentaire</a><br/>
+			<a href="commentaires.php">Accéder aux commentaires</a><br/>
 		<?php }
 		else
 		{ ?>
-			<a href="../commentaires.php">Ajouter un commentaire</a><br/>
+			<a href="../commentaires.php">Accéder aux commentaires</a><br/>
 		<?php } ?>
 		<?php if(file_exists("chatons.php"))
 		{ ?>
